@@ -26,9 +26,9 @@ export class PNavComponent {
   setMenus() {
     this.menus = [
       {
-        nome: 'Início',
-        link: '/',
-        icon: 'home',
+        nome: 'Softwares',
+        link: '/softwares',
+        icon: 'terminal',
       },
     ];
   }

@@ -64,12 +64,10 @@
         color: #6d7888;
         max-width: 80px;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow:    ellipsis;
+
       }
 
       cursor: pointer;
-
 
     }
 
@@ -156,14 +154,10 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 
 .nucleo-container {
 
-
-
   display: flex;
   align-items: center;
 
   color: #04aa81;
-
-
 
 }
 
@@ -191,16 +185,12 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
     cursor: pointer;
     background-color: #f3f5fb;
     padding: 8px;
-    border-radius: 10px;
+    border-radius: 50%;
     //font-weight: bold;
     color: #04aa81;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .icon {
-      margin-right: 5px;
-    }
 
     img {
       background-color: white;

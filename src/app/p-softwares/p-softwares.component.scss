@@ -1,0 +1,42 @@
+.pagina {
+  padding: 10px 20px 20px 20px;
+}
+
+.header {
+  //padding: 0;
+  border-bottom: 1px solid #ccccccaa;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+
+    > button {
+      margin-right: 5px;
+    }
+  }
+
+  min-height: 42px;
+
+  color: black;
+}
+
+.filtros {
+  padding: 0;
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .button {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

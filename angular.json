@@ -8,6 +8,10 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "component": {
+          "prefix": "",
+          "implements": ["OnInit"]
         }
       },
       "root": "",
