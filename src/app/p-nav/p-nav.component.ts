@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-p-nav',
@@ -6,5 +7,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./p-nav.component.scss'],
 })
 export class PNavComponent {
-  showFiller = false;
+  menu_lateral = true;
+  menus: {
+    nome: string;
+    link: string;
+    icon: string;
+  }[] = [];
+
+  nome_usuario = '';
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.nome_usuario = 'Fulano da Silva';
+    this.setMenus();
+  }
+
+  setMenus() {
+    this.menus = [
+      {
+        nome: 'Início',
+        link: '/',
+        icon: 'home',
+      },
+    ];
+  }
+
+  redirectTo(uri: string) {
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate([uri]));
+  }
+
+  getVoltar() {
+    return window.innerWidth < 600;
+  }
+
+  logout() {}
 }
