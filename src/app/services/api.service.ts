@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Software } from './model/software.interface';
+import { Software } from '../model/software.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,7 @@ export class ApiService {
   constructor() {}
 
   async getSoftwares(): Promise<Software[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const softwares: Software[] = [
         {
           nome: 'Photoshop',

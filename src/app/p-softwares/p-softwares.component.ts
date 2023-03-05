@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CSoftwareVersoesComponent } from '../c-software-versoes/c-software-versoes.component';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
+import { Software } from '../model/software.interface';
+import { AppService } from '../services/app.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-p-softwares',
@@ -17,22 +20,11 @@ export class PSoftwaresComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private appService: AppService
   ) {}
 
-  softwares: {
-    nome: string;
-    sigla: string;
-    objetivo: string;
-    versaoAtual: {
-      data: string;
-      versao: string;
-    };
-    versoes: {
-      data: string;
-      versao: string;
-    }[];
-  }[] = [];
+  softwares: Software[] = [];
 
   loading = false;
   displayedColumns: string[] = [
@@ -44,21 +36,7 @@ export class PSoftwaresComponent implements OnInit {
     'excluir',
   ];
 
-  showCards = false;
-
-  //pageEvent: PageEvent;
-
-  records_per_page = 10;
-  page = 0;
-  number_of_pages = 0;
-  number_of_records = 0;
-
   ngOnInit() {
-    if (window.innerWidth > 1250) {
-      this.showCards = false;
-    } else {
-      this.showCards = true;
-    }
     this.getSoftwares();
   }
 
@@ -66,21 +44,40 @@ export class PSoftwaresComponent implements OnInit {
     try {
       const softwares = await this.apiService.getSoftwares();
       this.softwares = softwares;
+
+      this.formatDataSoftwares();
     } catch (err) {
       console.log(err);
     }
   }
 
-  changeListCards() {
-    this.showCards = !this.showCards;
+  formatDataSoftwares() {
+    let strFormat = 'DD/MM/YYYY';
+
+    this.softwares.forEach(software => {
+      software.versaoAtual.dataFormatted = moment(
+        software.versaoAtual.data
+      ).format(strFormat);
+
+      software.versoes = software.versoes.map(versao => {
+        return {
+          ...versao,
+          dataFormatted: moment(versao.data).format(strFormat),
+        };
+      });
+    });
   }
 
-  clickVerVersoes(software: any) {
+  clickVerVersoes(software: Software) {
     this.dialog.open(CSoftwareVersoesComponent, {
       disableClose: false,
       data: {
         software,
       },
     });
+  }
+
+  setLoading(loading: boolean) {
+    this.appService.setLoading(loading);
   }
 }
