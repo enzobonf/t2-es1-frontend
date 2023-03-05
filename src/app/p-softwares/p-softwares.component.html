@@ -27,22 +27,35 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="versaoAtual">
+        <ng-container matColumnDef="versao_atual">
           <th mat-header-cell *matHeaderCellDef>Versão Atual</th>
           <td mat-cell *matCellDef="let software">
-            {{ software.versaoAtual.versao }} - {{ software.versaoAtual.dataFormatted }}
+            {{ software.versao_atual.versao }} - {{ software.versao_atual.data_formatted }} - {{ software.versao_atual.status.nome }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="verVersoes">
-          <th style="width: 15vw" mat-header-cell *matHeaderCellDef></th>
-          <td style="width: 15vw" mat-cell *matCellDef="let software">
+          <th style="width: 11vw" mat-header-cell *matHeaderCellDef></th>
+          <td style="width: 11vw" mat-cell *matCellDef="let software">
             <button
               mat-button
               style="color: #003366"
               (click)="clickVerVersoes(software)">
               <mat-icon style="font-size: 1.5rem">add</mat-icon>
               Ver versões
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="verTecnologias">
+          <th style="width: 13vw" mat-header-cell *matHeaderCellDef></th>
+          <td style="width: 13vw" mat-cell *matCellDef="let software">
+            <button
+              mat-button
+              style="color: #003366"
+              (click)="clickVerTecnologias(software)">
+              <mat-icon style="font-size: 1.5rem">add</mat-icon>
+              Ver tecnologias
             </button>
           </td>
         </ng-container>

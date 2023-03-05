@@ -9,6 +9,7 @@ import { PNavComponent } from './p-nav/p-nav.component';
 import { PSoftwaresComponent } from './p-softwares/p-softwares.component';
 import { MMaterialAngularModule } from './m-material-angular/m-material-angular/m-material-angular.module';
 import { CSoftwareVersoesComponent } from './c-software-versoes/c-software-versoes.component';
+import { CSoftwareTecnologiasComponent } from './c-software-tecnologias/c-software-tecnologias.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CSoftwareVersoesComponent } from './c-software-versoes/c-software-verso
     PNavComponent,
     PSoftwaresComponent,
     CSoftwareVersoesComponent,
+    CSoftwareTecnologiasComponent,
   ],
   imports: [
     BrowserModule,

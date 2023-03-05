@@ -6,6 +6,7 @@ import { ApiService } from '../services/api.service';
 import { Software } from '../model/software.interface';
 import { AppService } from '../services/app.service';
 import * as moment from 'moment';
+import { CSoftwareTecnologiasComponent } from '../c-software-tecnologias/c-software-tecnologias.component';
 
 @Component({
   selector: 'app-p-softwares',
@@ -30,8 +31,9 @@ export class PSoftwaresComponent implements OnInit {
   displayedColumns: string[] = [
     'nome',
     'sigla',
-    'versaoAtual',
+    'versao_atual',
     'verVersoes',
+    'verTecnologias',
     'editar',
     'excluir',
   ];
@@ -55,14 +57,14 @@ export class PSoftwaresComponent implements OnInit {
     let strFormat = 'DD/MM/YYYY';
 
     this.softwares.forEach(software => {
-      software.versaoAtual.dataFormatted = moment(
-        software.versaoAtual.data
+      software.versao_atual.data_formatted = moment(
+        software.versao_atual.data
       ).format(strFormat);
 
       software.versoes = software.versoes.map(versao => {
         return {
           ...versao,
-          dataFormatted: moment(versao.data).format(strFormat),
+          data_formatted: moment(versao.data).format(strFormat),
         };
       });
     });
@@ -71,6 +73,17 @@ export class PSoftwaresComponent implements OnInit {
   clickVerVersoes(software: Software) {
     this.dialog.open(CSoftwareVersoesComponent, {
       disableClose: false,
+      autoFocus: false,
+      data: {
+        software,
+      },
+    });
+  }
+
+  clickVerTecnologias(software: Software) {
+    this.dialog.open(CSoftwareTecnologiasComponent, {
+      disableClose: false,
+      autoFocus: false,
       data: {
         software,
       },

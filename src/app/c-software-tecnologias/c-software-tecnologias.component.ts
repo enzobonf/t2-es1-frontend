@@ -7,20 +7,20 @@ import {
 import { Software } from '../model/software.interface';
 
 @Component({
-  selector: 'app-c-software-versoes',
-  templateUrl: './c-software-versoes.component.html',
-  styleUrls: ['./c-software-versoes.component.scss'],
+  selector: 'app-c-software-tecnologias',
+  templateUrl: './c-software-tecnologias.component.html',
+  styleUrls: ['./c-software-tecnologias.component.scss'],
 })
-export class CSoftwareVersoesComponent implements OnInit {
+export class CSoftwareTecnologiasComponent {
   constructor(
-    public dialogRef: MatDialogRef<CSoftwareVersoesComponent>,
+    public dialogRef: MatDialogRef<CSoftwareTecnologiasComponent>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data_dialog: any
   ) {}
 
   software: Software = null;
   loading = false;
-  displayedColumns: string[] = ['versao', 'data', 'analista', 'status'];
+  displayedColumns: string[] = ['nome', 'objetivo'];
 
   ngOnInit(): void {
     const {
