@@ -136,7 +136,7 @@ html {
 }
 
 .buttonAzul {
-  background: #003366 !important;
+  background: #005b44 !important;
   color: white !important;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -150,7 +150,7 @@ html {
 }
 
 .buttonAzulBackground {
-  background: #003366 !important;
+  background: #005b44 !important;
   color: white !important;
 }
 
@@ -197,7 +197,7 @@ html {
 }
 
 .color-text-dark-blue {
-  color: #003366;
+  color: #005b44;
 }
 
 
@@ -212,7 +212,7 @@ html {
 
 .linha {
   min-height: 1px;
-  background: #003366;
+  background: #005b44;
   opacity: 0.2;
 }
 
@@ -253,7 +253,6 @@ html {
   outline: 1px solid rgba(0, 51, 102, 0.3);
 }
 
-
 .no-v-scroll {
   height: 100%;
   overflow-y: hidden;
@@ -277,7 +276,7 @@ html {
 }
 
 .snack-bar-info {
-  background-color: #003366;
+  background-color: #005b44;
   color: white;
 
   button {
@@ -307,41 +306,12 @@ html {
   background-color: #f7f7f7 !important;
 }
 
-
 .row {
   margin: 0;
 }
 
 
-.listagem-container {
-  margin-top: 10px;
-  padding: 0;
-  margin-bottom: 20px;
-
-  .titulo-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .titulo-dia {
-    color: #003366;
-    font-size: large;
-    font-weight: 600;
-    margin-right: 10px;
-  }
-
-  .titulo-dia-data {
-    color: #919095;
-    font-size: large;
-    font-weight: 600;
-  }
-
-  .dia-container {
-    padding-top: 10px;
-    border-left: 3px dotted #003366;
-    padding-left: 10px;
-  }
-
+.mat-stroked-button {
+ /*  vertical-align: top;
+  font-size: 1.25em; */
 }

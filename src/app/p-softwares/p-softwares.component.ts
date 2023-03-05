@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CSoftwareVersoesComponent } from '../c-software-versoes/c-software-versoes.component';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-p-softwares',
@@ -12,7 +14,11 @@ export class PSoftwaresComponent implements OnInit {
     nome: [''],
   });
 
-  constructor(public dialog: MatDialog, private formBuilder: FormBuilder) {}
+  constructor(
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService
+  ) {}
 
   softwares: {
     nome: string;
@@ -22,21 +28,22 @@ export class PSoftwaresComponent implements OnInit {
       data: string;
       versao: string;
     };
-  }[] = [
-    {
-      nome: 'Teste',
-      sigla: 'TT',
-      objetivo: 'Testar',
-      versaoAtual: {
-        data: '2023-03-01',
-        versao: '1.0',
-      },
-    },
-  ];
+    versoes: {
+      data: string;
+      versao: string;
+    }[];
+  }[] = [];
 
   loading = false;
-  displayedColumns: string[] = ['nome', 'sigla', 'editar', 'excluir'];
-  idIntegradoraSelected = -1;
+  displayedColumns: string[] = [
+    'nome',
+    'sigla',
+    'versaoAtual',
+    'verVersoes',
+    'editar',
+    'excluir',
+  ];
+
   showCards = false;
 
   //pageEvent: PageEvent;
@@ -52,6 +59,28 @@ export class PSoftwaresComponent implements OnInit {
     } else {
       this.showCards = true;
     }
-    //this.getIntegradoras();
+    this.getSoftwares();
+  }
+
+  async getSoftwares() {
+    try {
+      const softwares = await this.apiService.getSoftwares();
+      this.softwares = softwares;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  changeListCards() {
+    this.showCards = !this.showCards;
+  }
+
+  clickVerVersoes(software: any) {
+    this.dialog.open(CSoftwareVersoesComponent, {
+      disableClose: false,
+      data: {
+        software,
+      },
+    });
   }
 }

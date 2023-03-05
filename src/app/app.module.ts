@@ -8,6 +8,7 @@ import { PHomeComponent } from './p-home/p-home.component';
 import { PNavComponent } from './p-nav/p-nav.component';
 import { PSoftwaresComponent } from './p-softwares/p-softwares.component';
 import { MMaterialAngularModule } from './m-material-angular/m-material-angular/m-material-angular.module';
+import { CSoftwareVersoesComponent } from './c-software-versoes/c-software-versoes.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MMaterialAngularModule } from './m-material-angular/m-material-angular/
     PHomeComponent,
     PNavComponent,
     PSoftwaresComponent,
+    CSoftwareVersoesComponent,
   ],
   imports: [
     BrowserModule,

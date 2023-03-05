@@ -6,7 +6,7 @@
 
   display:flex !important;
   flex-direction: column !important;
-  background-color: #04aa81;
+  background-color: #005b44;
   padding: 0 !important;
 
   justify-content: space-between !important;
@@ -31,12 +31,12 @@
     }
 
     .menu-item:hover {
-      background-color: #04aa81;
+      background-color: #005b44;
     }
 
     .menu-item {
 
-      background-color: #04aa81;
+      background-color: #005b44;
       border: none;
 
       padding: 10px;
@@ -53,7 +53,7 @@
       //padding-left: -6px;
 
       .icon {
-        //color: #04aa81;
+        //color: #005b44;
         color: #ffffff90;
         margin-bottom: 5px;
       }
@@ -74,7 +74,7 @@
     .menu-item-selected {
 
 
-      border-left: 6px solid #015843;
+      border-left: 6px solid #002a20;
       color: white;
 
       .icon {
@@ -149,7 +149,7 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 .icon {
   cursor: pointer;
   //background-color:red;
-  color: #04aa81;
+  color: #005b44;
 }
 
 .nucleo-container {
@@ -157,7 +157,7 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
   display: flex;
   align-items: center;
 
-  color: #04aa81;
+  color: #005b44;
 
 }
 
@@ -176,7 +176,7 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 
   .notice {
       margin-right: 10px;
-      color: #04aa81
+      color: #005b44
 
   }
 
@@ -187,7 +187,7 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
     padding: 8px;
     border-radius: 50%;
     //font-weight: bold;
-    color: #04aa81;
+    color: #005b44;
     display: flex;
     justify-content: center;
     align-items: center;
