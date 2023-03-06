@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { statusConfig } from '../config/status.config';
-import { Analista, Software } from '../model/software.interface';
+import {
+  Analista,
+  Software,
+  TecnologiaSoftware,
+} from '../model/software.interface';
 
 const analistas: Analista[] = [
   {
+    id: 1,
     nome: 'Lucas Oliveira',
     email: 'lucas.oliveira@example.com',
   },
   {
+    id: 2,
     nome: 'Fernanda Santos',
     email: 'fernanda.santos@example.com',
   },
   {
+    id: 3,
     nome: 'Mariana Silva',
     email: 'mariana.silva@example.com',
   },
   {
+    id: 4,
     nome: 'João Santos',
     email: 'joao.santos@example.com',
   },
   {
+    id: 5,
     nome: 'Pedro Oliveira',
     email: 'pedro.oliveira@example.com',
   },
@@ -30,7 +39,7 @@ const analistas: Analista[] = [
 export class ApiService {
   constructor() {}
 
-  async getSoftwares(): Promise<Software[]> {
+  async getSoftwares() {
     return new Promise(resolve => {
       const softwares: Software[] = [
         {
@@ -186,7 +195,58 @@ export class ApiService {
         },
       ];
 
-      resolve(softwares);
+      resolve({ softwares });
+    });
+  }
+
+  async getTecnologias() {
+    return new Promise(resolve => {
+      const tecnologias: TecnologiaSoftware[] = [
+        {
+          id: 1,
+          nome: 'Adobe Lightroom',
+          objetivo: 'Software de edição e organização de fotos',
+        },
+        {
+          id: 2,
+          nome: 'Adobe Creative Cloud',
+          objetivo: 'Pacote de aplicativos de criação e design gráfico',
+        },
+        {
+          nome: 'Wacom Intuos',
+          objetivo: 'Tablet gráfico para desenho e pintura digital',
+        },
+        {
+          nome: 'Affinity Photo',
+          objetivo: 'Software alternativo de edição de imagens',
+        },
+        {
+          nome: 'Node.js',
+          objetivo: 'Desenvolvimento de back-end com JavaScript',
+        },
+        {
+          nome: 'Angular',
+          objetivo: 'Framework web poderoso e escalável',
+        },
+        {
+          nome: 'React',
+          objetivo:
+            'Biblioteca JavaScript para construção de interfaces de usuário interativas',
+        },
+        {
+          nome: 'Vue.js',
+          objetivo:
+            'Framework progressivo para construção de interfaces de usuário reativas e sofisticadas',
+        },
+      ];
+
+      resolve({ tecnologias });
+    });
+  }
+
+  async getAnalistas() {
+    return new Promise(resolve => {
+      resolve({ analistas });
     });
   }
 }

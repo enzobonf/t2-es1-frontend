@@ -7,6 +7,7 @@ import { Software } from '../model/software.interface';
 import { AppService } from '../services/app.service';
 import * as moment from 'moment';
 import { CSoftwareTecnologiasComponent } from '../c-software-tecnologias/c-software-tecnologias.component';
+import { CSoftwareFormComponent } from '../c-software-form/c-software-form.component';
 
 @Component({
   selector: 'app-p-softwares',
@@ -44,7 +45,7 @@ export class PSoftwaresComponent implements OnInit {
 
   async getSoftwares() {
     try {
-      const softwares = await this.apiService.getSoftwares();
+      const { softwares }: any = await this.apiService.getSoftwares();
       this.softwares = softwares;
 
       this.formatDataSoftwares();
@@ -67,6 +68,24 @@ export class PSoftwaresComponent implements OnInit {
           data_formatted: moment(versao.data).format(strFormat),
         };
       });
+    });
+  }
+
+  openDialogFormSoftware(software?: Software) {
+    const dialogRef = this.dialog.open(CSoftwareFormComponent, {
+      disableClose: true,
+      data: {
+        software,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        if (software) {
+          // TODO
+        }
+      }
     });
   }
 

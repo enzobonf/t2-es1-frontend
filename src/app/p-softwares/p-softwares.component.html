@@ -3,7 +3,7 @@
     <span class="titulo">Softwares</span>
 
     <div class="buttons">
-      <button mat-stroked-button>
+      <button mat-stroked-button (click)="openDialogFormSoftware()">
         <mat-icon>add</mat-icon>
         <span>Adicionar novo software</span>
       </button>
@@ -65,6 +65,7 @@
           <td style="width: 5vw" mat-cell *matCellDef="let software">
             <button
               mat-button
+              (click)="openDialogFormSoftware(software)"
               style="color: #005b44">
               Editar
             </button>
