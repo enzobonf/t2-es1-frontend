@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-import { Empresa } from '../model/empresa.interface';
 import { AppService } from '../services/app.service';
 import * as moment from 'moment';
 import { CEmpresaFormComponent } from '../c-empresa-form/c-empresa-form.component';
 import { CDialogConfirmComponent } from '../c-dialog-confirm/c-dialog-confirm.component';
+import { Empresa } from '../model/empresa.interface';
 
 @Component({
   selector: 'app-p-empresas',
@@ -26,41 +26,25 @@ export class PEmpresasComponent implements OnInit {
   ) {}
 
   empresas: Empresa[] = [];
-  all_status: StatusVersao[] = [];
+  //all_status: StatusVersao[] = [];
 
   loading = false;
   displayedColumns: string[] = [
     'nome',
-    'sigla',
-    'versao_atual',
-    'editarStatus',
-    'verVersoes',
-    'verTecnologias',
+    'cnpj',
+    'endereco',
     'editar',
     'excluir',
   ];
 
   ngOnInit() {
     this.getEmpresas();
-    this.getAllStatus();
   }
 
   async getEmpresas() {
     try {
       const { empresas }: any = await this.apiService.getEmpresas();
       this.empresas = empresas;
-
-      this.formatDataEmpresas();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async getAllStatus() {
-    try {
-      const { status }: any =
-        await this.apiService.getAllStatusDesenvolvimento();
-      this.all_status = status;
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +55,6 @@ export class PEmpresasComponent implements OnInit {
       disableClose: true,
       data: {
         empresa,
-        all_status: this.all_status,
       },
     });
 

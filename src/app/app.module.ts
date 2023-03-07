@@ -17,6 +17,7 @@ import { CAddItemComponent } from './c-add-item/c-add-item.component';
 import { CDialogConfirmComponent } from './c-dialog-confirm/c-dialog-confirm.component';
 import { CSoftwareVersoesFormComponent } from './c-software-versoes-form/c-software-versoes-form.component';
 import { PEmpresasComponent } from './p-empresas/p-empresas.component';
+import { CEmpresaFormComponent } from './c-empresa-form/c-empresa-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PEmpresasComponent } from './p-empresas/p-empresas.component';
     CDialogConfirmComponent,
     CSoftwareVersoesFormComponent,
     PEmpresasComponent,
+    CEmpresaFormComponent,
   ],
   imports: [
     BrowserModule,

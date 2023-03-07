@@ -21,6 +21,7 @@ export interface Empresa {
   nome: string;
   cnpj: string;
   endereco: {
+    tipo_logradouro: string;
     rua: string;
     numero: number;
     cidade: string;

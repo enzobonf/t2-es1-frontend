@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const fs = require('fs');
 
 faker.setLocale('pt_BR');
 
@@ -9,42 +10,42 @@ function generateEndereco() {
     numero: Math.floor(Math.random() * 9999) + 1,
     cidade: faker.address.city(),
     uf: faker.address.stateAbbr(),
-    pais: faker.address.country(),
+    pais: 'Brasil',
     cep: faker.address.zipCode(),
   };
 }
 
 // Função para gerar um telefone
-function generateTelefone(id) {
+function generateTelefone() {
   return {
-    id,
+    id: +faker.random.numeric(),
     numero: faker.phone.number(),
   };
 }
 
 // Função para gerar um email
-function generateEmail(id){
+function generateEmail(){
   return {
-    id,
+    id: +faker.random.numeric(),
     endereco: faker.internet.email(),
   };
 }
 
 // Função para gerar um usuário chave
-function generateUsuarioChave(id) {
+function generateUsuarioChave() {
   return {
-    id,
+    id: +faker.random.numeric(),
     nome: faker.name.fullName(),
-    cpf: faker.br.cpf(),
+    cpf: '000.000.000-00',
     email: faker.internet.email(),
     fones: [generateTelefone(1), generateTelefone(2)],
   };
 }
 
 // Função para gerar uma empresa
-function generateEmpresa(id) {
+function generateEmpresa() {
   return {
-    id,
+    id: +faker.random.numeric(),
     nome: faker.company.name(),
     cnpj: '000000000',
     endereco: generateEndereco(),
@@ -56,8 +57,17 @@ function generateEmpresa(id) {
 
 // Gerando 10 endereços aleatórios
 const empresas = [];
-for (let i = 0; i < 5; i++) {
+for (let i = 1; i < 5; i++) {
   empresas.push(generateEmpresa());
 }
 
+fs.writeFileSync(
+  `./empresas.json`,
+  JSON.stringify(empresas, null, 2),
+  'utf-8',
+);
+
 console.log(empresas);
+
+/* const empresa = generateEmpresa();
+console.log(empresa, empresa.usuario_chave); */
