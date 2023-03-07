@@ -30,6 +30,11 @@ export class PNavComponent {
         link: '/softwares',
         icon: 'terminal',
       },
+      {
+        nome: 'Empresas',
+        link: '/empresas',
+        icon: 'apartment',
+      },
     ];
   }
 

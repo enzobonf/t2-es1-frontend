@@ -8,6 +8,7 @@ import {
 import {
   Analista,
   Software,
+  StatusVersao,
   TecnologiaSoftware,
 } from '../model/software.interface';
 import { ApiService } from '../services/api.service';
@@ -30,6 +31,8 @@ export class CSoftwareFormComponent implements OnInit {
   loading = false;
   isNew = true;
 
+  all_status: StatusVersao[] = [];
+
   displayedColumns: string[] = ['nome', 'objetivo'];
 
   tecnologias: (TecnologiaSoftware & { selected: boolean })[] = [];
@@ -40,18 +43,22 @@ export class CSoftwareFormComponent implements OnInit {
     sigla: [null, [Validators.required]],
     versao_atual: this.formBuilder.group({
       versao: [null],
-      id_analista: [null],
       data: [null],
-      status: [null],
+      id_analista: [null],
+      id_status: [null],
     }),
   });
 
   ngOnInit(): void {
     const {
       software,
+      all_status,
     }: {
       software?: Software;
+      all_status: StatusVersao[];
     } = this.data_dialog;
+
+    this.all_status = all_status;
 
     if (software) {
       this.software = software;
@@ -70,7 +77,9 @@ export class CSoftwareFormComponent implements OnInit {
         selected: false,
       }));
 
-      //this.setSoftware();
+      if (this.software) {
+        this.setSoftware();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -91,7 +100,22 @@ export class CSoftwareFormComponent implements OnInit {
     }
   }
 
+  setSoftware() {
+    const idsTecnologiasSoftware = this.software.tecnologias.map(x => x.id);
+
+    this.tecnologias = this.tecnologias.map(tecnologia => ({
+      ...tecnologia,
+      selected: idsTecnologiasSoftware.includes(tecnologia.id),
+    }));
+  }
+
   clickAddTecnologia() {}
 
-  onSubmit() {}
+  onSubmit() {
+    this.close({});
+  }
+
+  close(data?: any) {
+    this.dialogRef.close(data);
+  }
 }

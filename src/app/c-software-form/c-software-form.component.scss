@@ -28,3 +28,8 @@ mat-dialog-content {
   font-size: 1.4rem !important;
 }
 
+.disabled {
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.38);
+}
+

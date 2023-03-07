@@ -3,11 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CSoftwareVersoesComponent } from '../c-software-versoes/c-software-versoes.component';
 import { ApiService } from '../services/api.service';
-import { Software } from '../model/software.interface';
+import { Software, StatusVersao } from '../model/software.interface';
 import { AppService } from '../services/app.service';
 import * as moment from 'moment';
 import { CSoftwareTecnologiasComponent } from '../c-software-tecnologias/c-software-tecnologias.component';
 import { CSoftwareFormComponent } from '../c-software-form/c-software-form.component';
+import { CDialogConfirmComponent } from '../c-dialog-confirm/c-dialog-confirm.component';
 
 @Component({
   selector: 'app-p-softwares',
@@ -27,12 +28,14 @@ export class PSoftwaresComponent implements OnInit {
   ) {}
 
   softwares: Software[] = [];
+  all_status: StatusVersao[] = [];
 
   loading = false;
   displayedColumns: string[] = [
     'nome',
     'sigla',
     'versao_atual',
+    'editarStatus',
     'verVersoes',
     'verTecnologias',
     'editar',
@@ -41,6 +44,7 @@ export class PSoftwaresComponent implements OnInit {
 
   ngOnInit() {
     this.getSoftwares();
+    this.getAllStatus();
   }
 
   async getSoftwares() {
@@ -49,6 +53,16 @@ export class PSoftwaresComponent implements OnInit {
       this.softwares = softwares;
 
       this.formatDataSoftwares();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getAllStatus() {
+    try {
+      const { status }: any =
+        await this.apiService.getAllStatusDesenvolvimento();
+      this.all_status = status;
     } catch (err) {
       console.log(err);
     }
@@ -76,6 +90,7 @@ export class PSoftwaresComponent implements OnInit {
       disableClose: true,
       data: {
         software,
+        all_status: this.all_status,
       },
     });
 
@@ -86,6 +101,22 @@ export class PSoftwaresComponent implements OnInit {
           // TODO
         }
       }
+    });
+  }
+
+  clickExcluir(software: Software) {
+    const dialogRef = this.dialog.open(CDialogConfirmComponent, {
+      width: '250px',
+      autoFocus: false,
+      data: {
+        title: `Deseja excluir o software ${software.nome}?`,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO
+      if (result)
+        this.softwares = this.softwares.filter(x => x.id !== software.id);
     });
   }
 

@@ -12,8 +12,11 @@ import { CSoftwareVersoesComponent } from './c-software-versoes/c-software-verso
 import { CSoftwareTecnologiasComponent } from './c-software-tecnologias/c-software-tecnologias.component';
 import { CSoftwareFormComponent } from './c-software-form/c-software-form.component';
 import { CSelectItemComponent } from './c-select-item/c-select-item.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CAddItemComponent } from './c-add-item/c-add-item.component';
+import { CDialogConfirmComponent } from './c-dialog-confirm/c-dialog-confirm.component';
+import { CSoftwareVersoesFormComponent } from './c-software-versoes-form/c-software-versoes-form.component';
+import { PEmpresasComponent } from './p-empresas/p-empresas.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,16 @@ import { CAddItemComponent } from './c-add-item/c-add-item.component';
     CSoftwareFormComponent,
     CSelectItemComponent,
     CAddItemComponent,
+    CDialogConfirmComponent,
+    CSoftwareVersoesFormComponent,
+    PEmpresasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MMaterialAngularModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
   providers: [],

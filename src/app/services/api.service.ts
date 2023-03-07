@@ -85,10 +85,12 @@ export class ApiService {
               objetivo: 'Pacote de aplicativos de criação e design gráfico',
             },
             {
+              id: 3,
               nome: 'Wacom Intuos',
               objetivo: 'Tablet gráfico para desenho e pintura digital',
             },
             {
+              id: 4,
               nome: 'Affinity Photo',
               objetivo: 'Software alternativo de edição de imagens',
             },
@@ -128,7 +130,7 @@ export class ApiService {
           tecnologias: [],
         },
         {
-          id: 2,
+          id: 3,
           nome: 'Google Chrome',
           sigla: 'GC',
           objetivo: 'Navegação na web',
@@ -136,7 +138,7 @@ export class ApiService {
             data: '2021-11-23',
             versao: '96.0.4664.45',
             analista: analistas[1],
-            status: statusConfig.desenvolvimento,
+            status: statusConfig.disponivel,
           },
           versoes: [
             {
@@ -161,7 +163,7 @@ export class ApiService {
           tecnologias: [],
         },
         {
-          id: 3,
+          id: 4,
           nome: 'Visual Studio Code',
           sigla: 'VSC',
           objetivo: 'Desenvolvimento de software',
@@ -213,27 +215,33 @@ export class ApiService {
           objetivo: 'Pacote de aplicativos de criação e design gráfico',
         },
         {
+          id: 3,
           nome: 'Wacom Intuos',
           objetivo: 'Tablet gráfico para desenho e pintura digital',
         },
         {
+          id: 4,
           nome: 'Affinity Photo',
           objetivo: 'Software alternativo de edição de imagens',
         },
         {
+          id: 5,
           nome: 'Node.js',
           objetivo: 'Desenvolvimento de back-end com JavaScript',
         },
         {
+          id: 6,
           nome: 'Angular',
           objetivo: 'Framework web poderoso e escalável',
         },
         {
+          id: 7,
           nome: 'React',
           objetivo:
             'Biblioteca JavaScript para construção de interfaces de usuário interativas',
         },
         {
+          id: 8,
           nome: 'Vue.js',
           objetivo:
             'Framework progressivo para construção de interfaces de usuário reativas e sofisticadas',
@@ -247,6 +255,13 @@ export class ApiService {
   async getAnalistas() {
     return new Promise(resolve => {
       resolve({ analistas });
+    });
+  }
+
+  async getAllStatusDesenvolvimento() {
+    return new Promise(resolve => {
+      const status = Object.values(statusConfig);
+      resolve({ status });
     });
   }
 }

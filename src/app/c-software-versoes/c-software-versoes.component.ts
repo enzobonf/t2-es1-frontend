@@ -4,6 +4,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { CSoftwareVersoesFormComponent } from '../c-software-versoes-form/c-software-versoes-form.component';
 import { Software } from '../model/software.interface';
 
 @Component({
@@ -30,5 +31,21 @@ export class CSoftwareVersoesComponent implements OnInit {
     } = this.data_dialog;
 
     this.software = software;
+  }
+
+  clickAddVersao() {
+    const dialogRef = this.dialog.open(CSoftwareVersoesFormComponent, {
+      disableClose: true,
+      data: {
+        software: this.software,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        //TODO
+      }
+    });
   }
 }
