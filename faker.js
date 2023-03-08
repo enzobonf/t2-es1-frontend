@@ -37,6 +37,36 @@ const statusContratoConfig = [
   },
 ];
 
+const statusChamadoConfig = [
+  {
+    id: 1,
+    nome: 'Em desenvolvimento',
+  },
+  {
+    id: 2,
+    nome: 'Realizado',
+  },
+  {
+    id: 3,
+    nome: 'Cancelado',
+  }
+]
+
+const tipoManutencaoChamado = [
+  {
+    id: 1,
+    nome: 'Erro',
+  },
+  {
+    id: 2,
+    nome: 'Evolução de Funcionalidade',
+  },
+  {
+    id: 3,
+    nome: 'Adaptativa',
+  }
+]
+
 const analistas = [
   {
     id: 1,
@@ -178,7 +208,7 @@ function generateContrato(empresa){
   const software = softwares[gerarNumeroAleatorio(0, 4)];
 
   return {
-    id: +faker.random.numeric(),
+    nro_contrato: +faker.random.numeric(5),
     empresa: {
       id: empresa.id,
       nome: empresa.nome,
@@ -189,8 +219,33 @@ function generateContrato(empresa){
       id: software.id,
       nome: software.nome,
       sigla: software.sigla,
+      versao: software.versao_atual
     },
     status: statusContratoConfig[gerarNumeroAleatorio(0, 4)],
+  }
+
+}
+
+function generateChamado(contrato){
+
+  const software = softwares[gerarNumeroAleatorio(0, 4)];
+
+  return {
+    nro_ticket:  +faker.random.numeric(4),
+    data_abertura: faker.date.recent(),
+    empresa: {
+      id: contrato.empresa.id,
+      nome: contrato.empresa.nome,
+    },
+    software: {
+      id: contrato.software.id,
+      nome: contrato.software.nome,
+      sigla: contrato.software.sigla,
+      versao: contrato.software.versao,
+    },
+    descricao: faker.lorem.lines(1),
+    tipo_manutencao: tipoManutencaoChamado[gerarNumeroAleatorio(0, 3)],
+    status: statusChamadoConfig[gerarNumeroAleatorio(0, 3)],
   }
 
 }
@@ -395,14 +450,203 @@ const empresas = [
   }
 ];
 
-const contratos = [];
-for(let i = 0; i < empresas.length; i++){
-  contratos.push(generateContrato(empresas[i]));
+const contratos = [
+  {
+    "nro_contrato": 23050,
+    "empresa": {
+      "id": 8,
+      "nome": "Costa, Batista e Macedo",
+      "usuario_chave": {
+        "id": 4,
+        "nome": "Benício Barros",
+        "cpf": "000.000.000-00",
+        "email": "Mait.Saraiva94@live.com",
+        "fones": [
+          {
+            "id": 8,
+            "numero": "(91) 89096-0559"
+          },
+          {
+            "id": 9,
+            "numero": "(61) 4479-2180"
+          }
+        ]
+      }
+    },
+    "data_contratacao": "2023-03-07T03:29:15.852Z",
+    "software": {
+      "id": 1,
+      "nome": "Photoshop",
+      "sigla": "PS",
+      "versao": {
+        "data": "2021-08-16",
+        "versao": "22.5.2",
+        "analista": {
+          "id": 1,
+          "nome": "Lucas Oliveira",
+          "email": "lucas.oliveira@example.com"
+        },
+        "status": {
+          "id": 2,
+          "nome": "Em desenvolvimento"
+        }
+      }
+    },
+    "status": {
+      "id": 1,
+      "nome": "Não vigente"
+    }
+  },
+  {
+    "nro_contrato": 63264,
+    "empresa": {
+      "id": 1,
+      "nome": "Saraiva LTDA",
+      "usuario_chave": {
+        "id": 6,
+        "nome": "Murilo Melo",
+        "cpf": "000.000.000-00",
+        "email": "Roberta.Silva53@hotmail.com",
+        "fones": [
+          {
+            "id": 1,
+            "numero": "(73) 3678-4934"
+          },
+          {
+            "id": 1,
+            "numero": "(26) 82894-5737"
+          }
+        ]
+      }
+    },
+    "data_contratacao": "2023-03-07T04:41:57.183Z",
+    "software": {
+      "id": 1,
+      "nome": "Photoshop",
+      "sigla": "PS",
+      "versao": {
+        "data": "2021-08-16",
+        "versao": "22.5.2",
+        "analista": {
+          "id": 1,
+          "nome": "Lucas Oliveira",
+          "email": "lucas.oliveira@example.com"
+        },
+        "status": {
+          "id": 2,
+          "nome": "Em desenvolvimento"
+        }
+      }
+    },
+    "status": {
+      "id": 1,
+      "nome": "Não vigente"
+    }
+  },
+  {
+    "nro_contrato": 77120,
+    "empresa": {
+      "id": 6,
+      "nome": "Batista, Xavier e Macedo",
+      "usuario_chave": {
+        "id": 2,
+        "nome": "Bruna Pereira Neto",
+        "cpf": "000.000.000-00",
+        "email": "Rafaela_Souza@bol.com.br",
+        "fones": [
+          {
+            "id": 7,
+            "numero": "(82) 1823-4863"
+          },
+          {
+            "id": 6,
+            "numero": "(33) 0306-9878"
+          }
+        ]
+      }
+    },
+    "data_contratacao": "2023-03-07T15:56:09.970Z",
+    "software": {
+      "id": 2,
+      "nome": "Microsoft Word",
+      "sigla": "MSW",
+      "versao": {
+        "data": "2021-10-10",
+        "versao": "16.42",
+        "analista": {
+          "id": 3,
+          "nome": "Mariana Silva",
+          "email": "mariana.silva@example.com"
+        },
+        "status": {
+          "id": 2,
+          "nome": "Em desenvolvimento"
+        }
+      }
+    },
+    "status": {
+      "id": 1,
+      "nome": "Ativo"
+    }
+  },
+  {
+    "nro_contrato": 95419,
+    "empresa": {
+      "id": 9,
+      "nome": "Costa e Associados",
+      "usuario_chave": {
+        "id": 2,
+        "nome": "Dr. Alessandra Martins",
+        "cpf": "000.000.000-00",
+        "email": "Gustavo69@hotmail.com",
+        "fones": [
+          {
+            "id": 5,
+            "numero": "+55 (17) 2553-6840"
+          },
+          {
+            "id": 4,
+            "numero": "+55 (17) 1696-3461"
+          }
+        ]
+      }
+    },
+    "data_contratacao": "2023-03-08T02:02:57.203Z",
+    "software": {
+      "id": 3,
+      "nome": "Google Chrome",
+      "sigla": "GC",
+      "versao": {
+        "data": "2021-11-23",
+        "versao": "96.0.4664.45",
+        "analista": {
+          "id": 2,
+          "nome": "Fernanda Santos",
+          "email": "fernanda.santos@example.com"
+        },
+        "status": {
+          "id": 1,
+          "nome": "Disponível"
+        }
+      }
+    },
+    "status": {
+      "id": 1,
+      "nome": "Em contratação"
+    }
+  }
+];
+
+const chamados = [];
+for(let i = 0; i < contratos.length; i++){
+  chamados.push(generateChamado(contratos[i]));
 }
 
+console.log(chamados);
+
 fs.writeFileSync(
-  `./contratos.json`,
-  JSON.stringify(contratos, null, 2),
+  `./chamados.json`,
+  JSON.stringify(chamados, null, 2),
   'utf-8',
 );
 

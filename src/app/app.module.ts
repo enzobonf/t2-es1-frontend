@@ -23,6 +23,9 @@ import { ClEmpresasComponent } from './cl-empresas/cl-empresas.component';
 import { ClContratosComponent } from './cl-contratos/cl-contratos.component';
 import { PContratosComponent } from './p-contratos/p-contratos.component';
 import { CContratoFormComponent } from './c-contrato-form/c-contrato-form.component';
+import { PChamadosComponent } from './p-chamados/p-chamados.component';
+import { ClChamadosComponent } from './cl-chamados/cl-chamados.component';
+import { CChamadoFormComponent } from './c-chamado-form/c-chamado-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { CContratoFormComponent } from './c-contrato-form/c-contrato-form.compon
     ClContratosComponent,
     PContratosComponent,
     CContratoFormComponent,
+    PChamadosComponent,
+    ClChamadosComponent,
+    CChamadoFormComponent,
   ],
   imports: [
     BrowserModule,

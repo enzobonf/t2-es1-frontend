@@ -22,7 +22,7 @@ export interface Empresa {
   cnpj: string;
   endereco: {
     tipo_logradouro: string;
-    rua: string;
+    logradouro: string;
     numero: number;
     cidade: string;
     uf: string;

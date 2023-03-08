@@ -1,6 +1,6 @@
 [
   {
-    "id": 9,
+    "nro_contrato": 23050,
     "empresa": {
       "id": 8,
       "nome": "Costa, Batista e Macedo",
@@ -21,11 +21,24 @@
         ]
       }
     },
-    "data_contratacao": "2023-03-07T05:14:57.177Z",
+    "data_contratacao": "2023-03-07T03:29:15.852Z",
     "software": {
       "id": 1,
       "nome": "Photoshop",
-      "sigla": "PS"
+      "sigla": "PS",
+      "versao": {
+        "data": "2021-08-16",
+        "versao": "22.5.2",
+        "analista": {
+          "id": 1,
+          "nome": "Lucas Oliveira",
+          "email": "lucas.oliveira@example.com"
+        },
+        "status": {
+          "id": 2,
+          "nome": "Em desenvolvimento"
+        }
+      }
     },
     "status": {
       "id": 1,
@@ -33,7 +46,7 @@
     }
   },
   {
-    "id": 5,
+    "nro_contrato": 63264,
     "empresa": {
       "id": 1,
       "nome": "Saraiva LTDA",
@@ -54,19 +67,32 @@
         ]
       }
     },
-    "data_contratacao": "2023-03-07T11:48:47.407Z",
+    "data_contratacao": "2023-03-07T04:41:57.183Z",
     "software": {
-      "id": 4,
-      "nome": "Visual Studio Code",
-      "sigla": "VSC"
+      "id": 1,
+      "nome": "Photoshop",
+      "sigla": "PS",
+      "versao": {
+        "data": "2021-08-16",
+        "versao": "22.5.2",
+        "analista": {
+          "id": 1,
+          "nome": "Lucas Oliveira",
+          "email": "lucas.oliveira@example.com"
+        },
+        "status": {
+          "id": 2,
+          "nome": "Em desenvolvimento"
+        }
+      }
     },
     "status": {
       "id": 1,
-      "nome": "Cancelado"
+      "nome": "Não vigente"
     }
   },
   {
-    "id": 9,
+    "nro_contrato": 77120,
     "empresa": {
       "id": 6,
       "nome": "Batista, Xavier e Macedo",
@@ -87,19 +113,32 @@
         ]
       }
     },
-    "data_contratacao": "2023-03-07T02:15:52.623Z",
+    "data_contratacao": "2023-03-07T15:56:09.970Z",
     "software": {
       "id": 2,
       "nome": "Microsoft Word",
-      "sigla": "MSW"
+      "sigla": "MSW",
+      "versao": {
+        "data": "2021-10-10",
+        "versao": "16.42",
+        "analista": {
+          "id": 3,
+          "nome": "Mariana Silva",
+          "email": "mariana.silva@example.com"
+        },
+        "status": {
+          "id": 2,
+          "nome": "Em desenvolvimento"
+        }
+      }
     },
     "status": {
       "id": 1,
-      "nome": "Cancelado"
+      "nome": "Ativo"
     }
   },
   {
-    "id": 4,
+    "nro_contrato": 95419,
     "empresa": {
       "id": 9,
       "nome": "Costa e Associados",
@@ -120,11 +159,24 @@
         ]
       }
     },
-    "data_contratacao": "2023-03-07T19:25:22.407Z",
+    "data_contratacao": "2023-03-08T02:02:57.203Z",
     "software": {
       "id": 3,
       "nome": "Google Chrome",
-      "sigla": "GC"
+      "sigla": "GC",
+      "versao": {
+        "data": "2021-11-23",
+        "versao": "96.0.4664.45",
+        "analista": {
+          "id": 2,
+          "nome": "Fernanda Santos",
+          "email": "fernanda.santos@example.com"
+        },
+        "status": {
+          "id": 1,
+          "nome": "Disponível"
+        }
+      }
     },
     "status": {
       "id": 1,

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { statusConfig } from '../config/status.config';
+import { Chamado } from '../model/chamado.interface';
+import { Contrato } from '../model/contrato.interface';
+import { Empresa } from '../model/empresa.interface';
 import {
   Analista,
   Software,
@@ -266,7 +269,7 @@ export class ApiService {
   }
 
   async getEmpresas() {
-    const empresas = [
+    const empresas: Empresa[] = [
       {
         id: 8,
         nome: 'Costa, Batista e Macedo',
@@ -475,42 +478,9 @@ export class ApiService {
   }
 
   async getContratos() {
-    let contratos = [
+    let contratos: Contrato[] = [
       {
-        nro_contrato: 93392,
-        empresa: {
-          id: 8,
-          nome: 'Costa, Batista e Macedo',
-          usuario_chave: {
-            id: 4,
-            nome: 'Benício Barros',
-            cpf: '000.000.000-00',
-            email: 'Mait.Saraiva94@live.com',
-            fones: [
-              {
-                id: 8,
-                numero: '(91) 89096-0559',
-              },
-              {
-                id: 9,
-                numero: '(61) 4479-2180',
-              },
-            ],
-          },
-        },
-        data_contratacao: '2023-03-07T05:14:57.177Z',
-        software: {
-          id: 1,
-          nome: 'Photoshop',
-          sigla: 'PS',
-        },
-        status: {
-          id: 1,
-          nome: 'Não vigente',
-        },
-      },
-      {
-        nro_contrato: 99848,
+        nro_contrato: 63264,
         empresa: {
           id: 1,
           nome: 'Saraiva LTDA',
@@ -531,19 +501,78 @@ export class ApiService {
             ],
           },
         },
-        data_contratacao: '2023-03-07T11:48:47.407Z',
+        data_contratacao: '2023-03-07T04:41:57.183Z',
         software: {
-          id: 4,
-          nome: 'Visual Studio Code',
-          sigla: 'VSC',
+          id: 1,
+          nome: 'Photoshop',
+          sigla: 'PS',
+          versao: {
+            data: '2021-08-16',
+            versao: '22.5.2',
+            analista: {
+              id: 1,
+              nome: 'Lucas Oliveira',
+              email: 'lucas.oliveira@example.com',
+            },
+            status: {
+              id: 2,
+              nome: 'Em desenvolvimento',
+            },
+          },
         },
         status: {
           id: 1,
-          nome: 'Cancelado',
+          nome: 'Não vigente',
         },
       },
       {
-        nro_contrato: 99992,
+        nro_contrato: 23050,
+        empresa: {
+          id: 8,
+          nome: 'Costa, Batista e Macedo',
+          usuario_chave: {
+            id: 4,
+            nome: 'Benício Barros',
+            cpf: '000.000.000-00',
+            email: 'Mait.Saraiva94@live.com',
+            fones: [
+              {
+                id: 8,
+                numero: '(91) 89096-0559',
+              },
+              {
+                id: 9,
+                numero: '(61) 4479-2180',
+              },
+            ],
+          },
+        },
+        data_contratacao: '2023-03-07T03:29:15.852Z',
+        software: {
+          id: 1,
+          nome: 'Photoshop',
+          sigla: 'PS',
+          versao: {
+            data: '2021-08-16',
+            versao: '22.5.2',
+            analista: {
+              id: 1,
+              nome: 'Lucas Oliveira',
+              email: 'lucas.oliveira@example.com',
+            },
+            status: {
+              id: 2,
+              nome: 'Em desenvolvimento',
+            },
+          },
+        },
+        status: {
+          id: 1,
+          nome: 'Não vigente',
+        },
+      },
+      {
+        nro_contrato: 77120,
         empresa: {
           id: 6,
           nome: 'Batista, Xavier e Macedo',
@@ -564,19 +593,32 @@ export class ApiService {
             ],
           },
         },
-        data_contratacao: '2023-03-07T02:15:52.623Z',
+        data_contratacao: '2023-03-07T15:56:09.970Z',
         software: {
           id: 2,
           nome: 'Microsoft Word',
           sigla: 'MSW',
+          versao: {
+            data: '2021-10-10',
+            versao: '16.42',
+            analista: {
+              id: 3,
+              nome: 'Mariana Silva',
+              email: 'mariana.silva@example.com',
+            },
+            status: {
+              id: 2,
+              nome: 'Em desenvolvimento',
+            },
+          },
         },
         status: {
           id: 1,
-          nome: 'Cancelado',
+          nome: 'Ativo',
         },
       },
       {
-        nro_contrato: 99999,
+        nro_contrato: 95419,
         empresa: {
           id: 9,
           nome: 'Costa e Associados',
@@ -597,11 +639,24 @@ export class ApiService {
             ],
           },
         },
-        data_contratacao: '2023-03-07T19:25:22.407Z',
+        data_contratacao: '2023-03-08T02:02:57.203Z',
         software: {
           id: 3,
           nome: 'Google Chrome',
           sigla: 'GC',
+          versao: {
+            data: '2021-11-23',
+            versao: '96.0.4664.45',
+            analista: {
+              id: 2,
+              nome: 'Fernanda Santos',
+              email: 'fernanda.santos@example.com',
+            },
+            status: {
+              id: 1,
+              nome: 'Disponível',
+            },
+          },
         },
         status: {
           id: 1,
@@ -612,6 +667,155 @@ export class ApiService {
 
     return new Promise((resolve, reject) => {
       resolve({ contratos });
+    });
+  }
+
+  async getChamados() {
+    const chamados: Chamado[] = [
+      {
+        nro_ticket: 9627,
+        data_abertura: '2023-03-07T13:03:53.873Z',
+        empresa: {
+          id: 8,
+          nome: 'Costa, Batista e Macedo',
+        },
+        software: {
+          id: 1,
+          nome: 'Photoshop',
+          sigla: 'PS',
+          versao: {
+            data: '2021-08-16',
+            versao: '22.5.2',
+            analista: {
+              id: 1,
+              nome: 'Lucas Oliveira',
+              email: 'lucas.oliveira@example.com',
+            },
+            status: {
+              id: 2,
+              nome: 'Em desenvolvimento',
+            },
+          },
+        },
+        descricao: 'Placeat nihil deserunt modi sunt quo placeat deleniti.',
+        tipo_manutencao: {
+          id: 1,
+          nome: 'Erro',
+        },
+        status: {
+          id: 2,
+          nome: 'Realizado',
+        },
+      },
+      {
+        nro_ticket: 9668,
+        data_abertura: '2023-03-08T01:23:34.248Z',
+        empresa: {
+          id: 1,
+          nome: 'Saraiva LTDA',
+        },
+        software: {
+          id: 1,
+          nome: 'Photoshop',
+          sigla: 'PS',
+          versao: {
+            data: '2021-08-16',
+            versao: '22.5.2',
+            analista: {
+              id: 1,
+              nome: 'Lucas Oliveira',
+              email: 'lucas.oliveira@example.com',
+            },
+            status: {
+              id: 2,
+              nome: 'Em desenvolvimento',
+            },
+          },
+        },
+        descricao: 'Laudantium qui pariatur.',
+        tipo_manutencao: {
+          id: 1,
+          nome: 'Erro',
+        },
+        status: {
+          id: 3,
+          nome: 'Cancelado',
+        },
+      },
+      {
+        nro_ticket: 7154,
+        data_abertura: '2023-03-07T08:37:13.755Z',
+        empresa: {
+          id: 6,
+          nome: 'Batista, Xavier e Macedo',
+        },
+        software: {
+          id: 2,
+          nome: 'Microsoft Word',
+          sigla: 'MSW',
+          versao: {
+            data: '2021-10-10',
+            versao: '16.42',
+            analista: {
+              id: 3,
+              nome: 'Mariana Silva',
+              email: 'mariana.silva@example.com',
+            },
+            status: {
+              id: 2,
+              nome: 'Em desenvolvimento',
+            },
+          },
+        },
+        descricao: 'Possimus pariatur iure a sunt.',
+        tipo_manutencao: {
+          id: 2,
+          nome: 'Evolução de Funcionalidade',
+        },
+        status: {
+          id: 1,
+          nome: 'Em desenvolvimento',
+        },
+      },
+      {
+        nro_ticket: 8470,
+        data_abertura: '2023-03-07T05:53:43.866Z',
+        empresa: {
+          id: 9,
+          nome: 'Costa e Associados',
+        },
+        software: {
+          id: 3,
+          nome: 'Google Chrome',
+          sigla: 'GC',
+          versao: {
+            data: '2021-11-23',
+            versao: '96.0.4664.45',
+            analista: {
+              id: 2,
+              nome: 'Fernanda Santos',
+              email: 'fernanda.santos@example.com',
+            },
+            status: {
+              id: 1,
+              nome: 'Disponível',
+            },
+          },
+        },
+        descricao: 'Sit eum ipsum veniam iste.',
+        tipo_manutencao: {
+          id: 1,
+          nome: 'Erro',
+        },
+        status: {
+          id: 3,
+          nome: 'Cancelado',
+        },
+      },
+    ];
+
+    return new Promise((resolve, reject) => {
+      resolve({ chamados });
     });
   }
 }

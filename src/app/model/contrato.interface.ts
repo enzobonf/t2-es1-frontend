@@ -1,10 +1,11 @@
 import { Empresa, UsuarioChave } from './empresa.interface';
-import { Software } from './software.interface';
+import { Analista, Software, VersaoSofware } from './software.interface';
 
 export interface StatusContrato {
-  id: string;
+  id: number;
   nome: string;
 }
+
 export interface Contrato {
   nro_contrato: number;
   empresa: {
@@ -18,6 +19,7 @@ export interface Contrato {
     id: number;
     nome: string;
     sigla: string;
+    versao: VersaoSofware;
   };
   status: StatusContrato;
 }

@@ -45,6 +45,11 @@ export class PNavComponent {
         link: '/contratos',
         icon: 'edit_document',
       },
+      {
+        nome: 'Chamados',
+        link: '/chamados',
+        icon: 'notification_important',
+      },
     ];
   }
 

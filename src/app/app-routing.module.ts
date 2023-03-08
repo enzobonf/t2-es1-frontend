@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PChamadosComponent } from './p-chamados/p-chamados.component';
 import { PContratosComponent } from './p-contratos/p-contratos.component';
 import { PEmpresasComponent } from './p-empresas/p-empresas.component';
 import { PHomeComponent } from './p-home/p-home.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'contratos',
         component: PContratosComponent,
+      },
+      {
+        path: 'chamados',
+        component: PChamadosComponent,
       },
     ],
   },

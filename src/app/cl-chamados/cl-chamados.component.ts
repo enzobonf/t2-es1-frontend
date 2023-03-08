@@ -4,16 +4,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { AppService } from '../services/app.service';
 import * as moment from 'moment';
-import { CContratoFormComponent } from '../c-contrato-form/c-contrato-form.component';
+import { CChamadoFormComponent } from '../c-chamado-form/c-chamado-form.component';
 import { CDialogConfirmComponent } from '../c-dialog-confirm/c-dialog-confirm.component';
-import { Contrato } from '../model/contrato.interface';
+import { Chamado } from '../model/chamado.interface';
 
 @Component({
-  selector: 'cl-contratos',
-  templateUrl: './cl-contratos.component.html',
-  styleUrls: ['./cl-contratos.component.scss'],
+  selector: 'cl-chamados',
+  templateUrl: './cl-chamados.component.html',
+  styleUrls: ['./cl-chamados.component.scss'],
 })
-export class ClContratosComponent implements OnInit {
+export class ClChamadosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
@@ -22,78 +22,77 @@ export class ClContratosComponent implements OnInit {
 
   @Input() showButtons = true;
 
-  contratos: Contrato[] = [];
+  chamados: Chamado[] = [];
   //all_status: StatusVersao[] = [];
 
   loading = false;
   displayedColumns: string[] = [
-    'nome_empresa',
-    'nome_software',
     'numero',
     'data',
-    'representante',
+    'nome_empresa',
+    'analista',
+    'descricao',
+    'tipo',
     'status',
     'editar',
     'excluir',
   ];
 
   ngOnInit() {
-    this.getContratos();
+    this.getChamados();
   }
 
-  async getContratos() {
+  async getChamados() {
     try {
-      const { contratos }: any = await this.apiService.getContratos();
-      this.contratos = contratos;
-      this.formatDataSoftwares();
+      const { chamados }: any = await this.apiService.getChamados();
+      this.chamados = chamados;
+      this.formatDataChamados();
     } catch (err) {
       console.log(err);
     }
   }
 
-  formatDataSoftwares() {
+  formatDataChamados() {
     let strFormat = 'DD/MM/YYYY';
 
-    this.contratos.forEach(contrato => {
-      contrato.data_formatted = moment(contrato.data_contratacao).format(
-        strFormat
-      );
+    this.chamados.forEach(chamado => {
+      chamado.data_formatted = moment(chamado.data_abertura).format(strFormat);
     });
   }
 
-  openDialogFormContrato(contrato?: Contrato) {
-    const dialogRef = this.dialog.open(CContratoFormComponent, {
+  openDialogFormChamado(chamado?: Chamado) {
+    const dialogRef = this.dialog.open(CChamadoFormComponent, {
       disableClose: true,
       data: {
-        contrato,
+        chamado,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        if (contrato) {
+        if (chamado) {
           // TODO
         }
       }
     });
   }
 
-  clickExcluir(contrato: Contrato) {
+  clickExcluir(chamado: Chamado) {
     const dialogRef = this.dialog.open(CDialogConfirmComponent, {
       width: '250px',
       autoFocus: false,
       data: {
-        title: `Deseja excluir o contrato ${contrato.nro_contrato}?`,
-        content: `Software: ${contrato.software.nome} | Empresa: ${contrato.empresa.nome}`,
+        title: `Deseja excluir o chamado ${chamado.nro_ticket}?`,
+        content: `Software: ${chamado.software.nome} | Empresa: ${chamado.empresa.nome}`,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO
       if (result)
-        this.contratos = this.contratos.filter(
-          x => x.nro_contrato !== contrato.nro_contrato
+        this.chamados = this.chamados.filter(
+          x => x.nro_ticket !== chamado.nro_ticket
         );
     });
   }
