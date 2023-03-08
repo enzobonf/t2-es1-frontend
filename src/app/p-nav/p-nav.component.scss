@@ -152,23 +152,6 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
   color: #005b44;
 }
 
-.nucleo-container {
-
-  display: flex;
-  align-items: center;
-
-  color: #005b44;
-
-}
-
-@media (max-width: 600px) {
-  .nucleo-container {
-    //display: none;
-  }
-}
-
-
-
 .infos {
 
   display: flex;
