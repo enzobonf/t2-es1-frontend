@@ -28,6 +28,6 @@ export interface Software {
   sigla: string;
   objetivo: string;
   versao_atual: VersaoSofware;
-  versoes: VersaoSofware[];
-  tecnologias: TecnologiaSoftware[];
+  versoes?: VersaoSofware[];
+  tecnologias?: TecnologiaSoftware[];
 }

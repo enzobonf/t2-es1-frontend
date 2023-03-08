@@ -26,6 +26,11 @@ export class PNavComponent {
   setMenus() {
     this.menus = [
       {
+        nome: 'Início',
+        link: '/inicio',
+        icon: 'home',
+      },
+      {
         nome: 'Softwares',
         link: '/softwares',
         icon: 'terminal',
@@ -34,6 +39,11 @@ export class PNavComponent {
         nome: 'Empresas',
         link: '/empresas',
         icon: 'apartment',
+      },
+      {
+        nome: 'Contratos',
+        link: '/contratos',
+        icon: 'edit_document',
       },
     ];
   }

@@ -8,6 +8,7 @@ import {
 import { Subscription } from 'rxjs';
 import { AppService } from './services/app.service';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 moment.locale('pt-br');
 @Component({
@@ -16,14 +17,22 @@ moment.locale('pt-br');
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
-  constructor(private appService: AppService, private ref: ChangeDetectorRef) {}
+  constructor(
+    private appService: AppService,
+    private ref: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   loadingSubsCription: Subscription | undefined;
   loading: boolean = false;
 
   title = 'T2 - ES1';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    /* this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate(['inicio'])); */
+  }
 
   ngAfterViewInit(): void {
     this.loadingSubsCription = this.appService.loadingEventEmitter.subscribe(

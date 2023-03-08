@@ -375,7 +375,7 @@ export class ApiService {
           tipo_logradouro: 'Rua',
           logradouro: 'Pedro Henrique Alameda',
           numero: 2171,
-          cidade: 'undefined Gúbio do Norte',
+          cidade: 'Gúbio do Norte',
           uf: 'BA',
           pais: 'Brasil',
           cep: '59135-800',
@@ -425,7 +425,7 @@ export class ApiService {
           tipo_logradouro: 'Rua',
           logradouro: 'Kléber Marginal',
           numero: 5742,
-          cidade: 'undefined Lorenzo de Nossa Senhora',
+          cidade: 'Lorenzo de Nossa Senhora',
           uf: 'MG',
           pais: 'Brasil',
           cep: '89404-072',
@@ -471,6 +471,147 @@ export class ApiService {
 
     return new Promise((resolve, reject) => {
       resolve({ empresas });
+    });
+  }
+
+  async getContratos() {
+    let contratos = [
+      {
+        nro_contrato: 93392,
+        empresa: {
+          id: 8,
+          nome: 'Costa, Batista e Macedo',
+          usuario_chave: {
+            id: 4,
+            nome: 'Benício Barros',
+            cpf: '000.000.000-00',
+            email: 'Mait.Saraiva94@live.com',
+            fones: [
+              {
+                id: 8,
+                numero: '(91) 89096-0559',
+              },
+              {
+                id: 9,
+                numero: '(61) 4479-2180',
+              },
+            ],
+          },
+        },
+        data_contratacao: '2023-03-07T05:14:57.177Z',
+        software: {
+          id: 1,
+          nome: 'Photoshop',
+          sigla: 'PS',
+        },
+        status: {
+          id: 1,
+          nome: 'Não vigente',
+        },
+      },
+      {
+        nro_contrato: 99848,
+        empresa: {
+          id: 1,
+          nome: 'Saraiva LTDA',
+          usuario_chave: {
+            id: 6,
+            nome: 'Murilo Melo',
+            cpf: '000.000.000-00',
+            email: 'Roberta.Silva53@hotmail.com',
+            fones: [
+              {
+                id: 1,
+                numero: '(73) 3678-4934',
+              },
+              {
+                id: 1,
+                numero: '(26) 82894-5737',
+              },
+            ],
+          },
+        },
+        data_contratacao: '2023-03-07T11:48:47.407Z',
+        software: {
+          id: 4,
+          nome: 'Visual Studio Code',
+          sigla: 'VSC',
+        },
+        status: {
+          id: 1,
+          nome: 'Cancelado',
+        },
+      },
+      {
+        nro_contrato: 99992,
+        empresa: {
+          id: 6,
+          nome: 'Batista, Xavier e Macedo',
+          usuario_chave: {
+            id: 2,
+            nome: 'Bruna Pereira Neto',
+            cpf: '000.000.000-00',
+            email: 'Rafaela_Souza@bol.com.br',
+            fones: [
+              {
+                id: 7,
+                numero: '(82) 1823-4863',
+              },
+              {
+                id: 6,
+                numero: '(33) 0306-9878',
+              },
+            ],
+          },
+        },
+        data_contratacao: '2023-03-07T02:15:52.623Z',
+        software: {
+          id: 2,
+          nome: 'Microsoft Word',
+          sigla: 'MSW',
+        },
+        status: {
+          id: 1,
+          nome: 'Cancelado',
+        },
+      },
+      {
+        nro_contrato: 99999,
+        empresa: {
+          id: 9,
+          nome: 'Costa e Associados',
+          usuario_chave: {
+            id: 2,
+            nome: 'Dr. Alessandra Martins',
+            cpf: '000.000.000-00',
+            email: 'Gustavo69@hotmail.com',
+            fones: [
+              {
+                id: 5,
+                numero: '+55 (17) 2553-6840',
+              },
+              {
+                id: 4,
+                numero: '+55 (17) 1696-3461',
+              },
+            ],
+          },
+        },
+        data_contratacao: '2023-03-07T19:25:22.407Z',
+        software: {
+          id: 3,
+          nome: 'Google Chrome',
+          sigla: 'GC',
+        },
+        status: {
+          id: 1,
+          nome: 'Em contratação',
+        },
+      },
+    ];
+
+    return new Promise((resolve, reject) => {
+      resolve({ contratos });
     });
   }
 }

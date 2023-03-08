@@ -18,6 +18,11 @@ import { CDialogConfirmComponent } from './c-dialog-confirm/c-dialog-confirm.com
 import { CSoftwareVersoesFormComponent } from './c-software-versoes-form/c-software-versoes-form.component';
 import { PEmpresasComponent } from './p-empresas/p-empresas.component';
 import { CEmpresaFormComponent } from './c-empresa-form/c-empresa-form.component';
+import { ClSoftwaresComponent } from './cl-softwares/cl-softwares.component';
+import { ClEmpresasComponent } from './cl-empresas/cl-empresas.component';
+import { ClContratosComponent } from './cl-contratos/cl-contratos.component';
+import { PContratosComponent } from './p-contratos/p-contratos.component';
+import { CContratoFormComponent } from './c-contrato-form/c-contrato-form.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,11 @@ import { CEmpresaFormComponent } from './c-empresa-form/c-empresa-form.component
     CSoftwareVersoesFormComponent,
     PEmpresasComponent,
     CEmpresaFormComponent,
+    ClSoftwaresComponent,
+    ClEmpresasComponent,
+    ClContratosComponent,
+    PContratosComponent,
+    CContratoFormComponent,
   ],
   imports: [
     BrowserModule,
