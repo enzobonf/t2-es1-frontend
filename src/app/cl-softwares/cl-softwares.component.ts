@@ -166,7 +166,7 @@ export class ClSoftwaresComponent implements OnInit {
         id_versao,
         id_status_versao
       );
-      this.softwares = this.softwares.filter(x => x.id !== id_software);
+
       this.setLoading(false);
     } catch (err) {
       this.setLoading(false);
@@ -194,8 +194,14 @@ export class ClSoftwaresComponent implements OnInit {
     });
   }
 
-  onChangeStatus(event: any, software: Software) {
-    console.log(event, software);
+  async onChangeStatus(event: any, software: Software) {
+    const id_versao = event.value;
+
+    await this.setStatusVersaoAtual(
+      software.id,
+      software.versao_atual.id,
+      id_versao
+    );
   }
 
   setLoading(loading: boolean) {
