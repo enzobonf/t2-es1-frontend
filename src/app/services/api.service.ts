@@ -52,6 +52,45 @@ export class ApiService {
     );
   }
 
+  async postSoftware(software: any) {
+    return firstValueFrom(
+      this.http.post<any>(this.api + '/softwares', software).pipe(take(1))
+    );
+  }
+
+  async putSoftware(id_software: number, software: any) {
+    return firstValueFrom(
+      this.http
+        .put<any>(this.api + `/softwares/${id_software}`, software)
+        .pipe(take(1))
+    );
+  }
+
+  async deleteSoftware(id_software: number) {
+    return firstValueFrom(
+      this.http
+        .delete<any>(this.api + `/softwares/${id_software}`)
+        .pipe(take(1))
+    );
+  }
+
+  async setStatusVersaoSoftware(
+    id_software: number,
+    id_versao: number,
+    id_status_versao: number
+  ) {
+    return firstValueFrom(
+      this.http
+        .put<any>(
+          this.api + `/softwares/${id_software}/versoes/${id_versao}/status`,
+          {
+            id_status_versao,
+          }
+        )
+        .pipe(take(1))
+    );
+  }
+
   async getTecnologias() {
     return new Promise(resolve => {
       const tecnologias: TecnologiaSoftware[] = [
@@ -362,7 +401,7 @@ export class ApiService {
               nome: 'Lucas Oliveira',
               email: 'lucas.oliveira@example.com',
             },
-            status: {
+            status_versao: {
               id: 2,
               nome: 'Em desenvolvimento',
             },
@@ -408,7 +447,7 @@ export class ApiService {
               nome: 'Lucas Oliveira',
               email: 'lucas.oliveira@example.com',
             },
-            status: {
+            status_versao: {
               id: 2,
               nome: 'Em desenvolvimento',
             },
@@ -454,7 +493,7 @@ export class ApiService {
               nome: 'Mariana Silva',
               email: 'mariana.silva@example.com',
             },
-            status: {
+            status_versao: {
               id: 2,
               nome: 'Em desenvolvimento',
             },
@@ -500,7 +539,7 @@ export class ApiService {
               nome: 'Fernanda Santos',
               email: 'fernanda.santos@example.com',
             },
-            status: {
+            status_versao: {
               id: 1,
               nome: 'Disponível',
             },
@@ -539,7 +578,7 @@ export class ApiService {
               nome: 'Lucas Oliveira',
               email: 'lucas.oliveira@example.com',
             },
-            status: {
+            status_versao: {
               id: 2,
               nome: 'Em desenvolvimento',
             },
@@ -574,7 +613,7 @@ export class ApiService {
               nome: 'Lucas Oliveira',
               email: 'lucas.oliveira@example.com',
             },
-            status: {
+            status_versao: {
               id: 2,
               nome: 'Em desenvolvimento',
             },
@@ -609,7 +648,7 @@ export class ApiService {
               nome: 'Mariana Silva',
               email: 'mariana.silva@example.com',
             },
-            status: {
+            status_versao: {
               id: 2,
               nome: 'Em desenvolvimento',
             },
@@ -644,7 +683,7 @@ export class ApiService {
               nome: 'Fernanda Santos',
               email: 'fernanda.santos@example.com',
             },
-            status: {
+            status_versao: {
               id: 1,
               nome: 'Disponível',
             },

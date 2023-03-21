@@ -26,6 +26,7 @@ import { CContratoFormComponent } from './c-contrato-form/c-contrato-form.compon
 import { PChamadosComponent } from './p-chamados/p-chamados.component';
 import { ClChamadosComponent } from './cl-chamados/cl-chamados.component';
 import { CChamadoFormComponent } from './c-chamado-form/c-chamado-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CChamadoFormComponent } from './c-chamado-form/c-chamado-form.component
     MMaterialAngularModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

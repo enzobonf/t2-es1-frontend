@@ -50,12 +50,15 @@ export class ClSoftwaresComponent implements OnInit {
   }
 
   async getSoftwares() {
+    this.setLoading(true);
     try {
       const { softwares }: any = await this.apiService.getSoftwares();
       this.softwares = softwares;
 
       this.formatDataSoftwares();
+      this.setLoading(false);
     } catch (err) {
+      this.setLoading(false);
       console.log(err);
     }
   }
@@ -74,9 +77,16 @@ export class ClSoftwaresComponent implements OnInit {
     let strFormat = 'DD/MM/YYYY';
 
     this.softwares.forEach(software => {
-      software.versao_atual.data_formatted = moment(
-        software.versao_atual.data
-      ).format(strFormat);
+      if (software.versao_atual) {
+        software.versao_atual.data_formatted = moment(
+          software.versao_atual.data
+        ).format(strFormat);
+        const { versao, data_formatted, analista } = software.versao_atual;
+
+        software.versao_atual_str = `${versao} - ${data_formatted} - ${analista.nome}`;
+      } else {
+        software.versao_atual_str = '--';
+      }
 
       software.versoes = software.versoes.map(versao => {
         return {
@@ -96,11 +106,20 @@ export class ClSoftwaresComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: Software) => {
       if (result) {
-        console.log(result);
         if (software) {
-          // TODO
+          const softwareIndex = this.softwares.findIndex(
+            x => x.id === result.id
+          );
+          this.softwares[softwareIndex] = {
+            ...this.softwares[softwareIndex],
+            ...result,
+          };
+
+          this.softwares = [...this.softwares];
+        } else {
+          this.softwares = [...this.softwares, result];
         }
       }
     });
@@ -117,9 +136,42 @@ export class ClSoftwaresComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO
-      if (result)
-        this.softwares = this.softwares.filter(x => x.id !== software.id);
+      if (result) this.deleteSoftware(software.id);
     });
+  }
+
+  async deleteSoftware(id_software: number) {
+    this.setLoading(true);
+
+    try {
+      await this.apiService.deleteSoftware(id_software);
+      this.softwares = this.softwares.filter(x => x.id !== id_software);
+      this.setLoading(false);
+    } catch (err) {
+      this.setLoading(false);
+      console.log(err);
+    }
+  }
+
+  async setStatusVersaoAtual(
+    id_software: number,
+    id_versao: number,
+    id_status_versao: number
+  ) {
+    this.setLoading(true);
+
+    try {
+      await this.apiService.setStatusVersaoSoftware(
+        id_software,
+        id_versao,
+        id_status_versao
+      );
+      this.softwares = this.softwares.filter(x => x.id !== id_software);
+      this.setLoading(false);
+    } catch (err) {
+      this.setLoading(false);
+      console.log(err);
+    }
   }
 
   clickVerVersoes(software: Software) {
@@ -140,6 +192,10 @@ export class ClSoftwaresComponent implements OnInit {
         software,
       },
     });
+  }
+
+  onChangeStatus(event: any, software: Software) {
+    console.log(event, software);
   }
 
   setLoading(loading: boolean) {

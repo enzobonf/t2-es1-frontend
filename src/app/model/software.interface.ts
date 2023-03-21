@@ -8,6 +8,9 @@ export interface Analista {
   id?: number;
   nome: string;
   email: string;
+  cpf?: string;
+  id_tipo_usuario?: number;
+  objetivo?: string;
 }
 
 export interface StatusVersao {
@@ -20,7 +23,7 @@ export interface VersaoSofware {
   data_formatted?: string;
   versao: string;
   analista: Analista;
-  status: StatusVersao;
+  status_versao: StatusVersao;
 }
 export interface Software {
   id: number;
@@ -28,6 +31,7 @@ export interface Software {
   sigla: string;
   objetivo: string;
   versao_atual: VersaoSofware;
+  versao_atual_str?: string;
   versoes?: VersaoSofware[];
   tecnologias?: TecnologiaSoftware[];
 }

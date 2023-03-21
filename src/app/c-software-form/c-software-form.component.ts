@@ -12,6 +12,7 @@ import {
   TecnologiaSoftware,
 } from '../model/software.interface';
 import { ApiService } from '../services/api.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-c-software-form',
@@ -22,6 +23,7 @@ export class CSoftwareFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private appService: AppService,
     public dialogRef: MatDialogRef<CSoftwareFormComponent>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data_dialog: any
@@ -41,12 +43,12 @@ export class CSoftwareFormComponent implements OnInit {
   public form: FormGroup = this.formBuilder.group({
     nome: [null, [Validators.required]],
     sigla: [null, [Validators.required]],
-    versao_atual: this.formBuilder.group({
+    /*     versao_atual: this.formBuilder.group({
       versao: [null],
       data: [null],
       id_analista: [null],
       id_status: [null],
-    }),
+    }), */
   });
 
   ngOnInit(): void {
@@ -92,7 +94,7 @@ export class CSoftwareFormComponent implements OnInit {
 
       console.log(analistas);
 
-      this.form.get('versao_atual.id_analista').setValue(analistas[0].id);
+      //this.form.get('versao_atual.id_analista').setValue(analistas[0].id);
 
       //this.setSoftware();
     } catch (err) {
@@ -101,8 +103,10 @@ export class CSoftwareFormComponent implements OnInit {
   }
 
   setSoftware() {
-    const idsTecnologiasSoftware = this.software.tecnologias.map(x => x.id);
+    this.form.get('nome').setValue(this.software.nome);
+    this.form.get('sigla').setValue(this.software.sigla);
 
+    const idsTecnologiasSoftware = this.software.tecnologias.map(x => x.id);
     this.tecnologias = this.tecnologias.map(tecnologia => ({
       ...tecnologia,
       selected: idsTecnologiasSoftware.includes(tecnologia.id),
@@ -111,11 +115,45 @@ export class CSoftwareFormComponent implements OnInit {
 
   clickAddTecnologia() {}
 
-  onSubmit() {
-    this.close({});
+  async onSubmit() {
+    this.setLoading(true);
+
+    const { nome, sigla } = this.form.value;
+
+    try {
+      const tecnologias = this.tecnologias
+        .filter(x => x.selected)
+        .map(x => x.id);
+
+      const body = {
+        nome,
+        sigla,
+        tecnologias,
+      };
+
+      let response: any;
+      if (this.isNew) {
+        response = await this.apiService.postSoftware(body);
+      } else {
+        response = await this.apiService.putSoftware(this.software.id, body);
+      }
+
+      this.close({
+        ...response,
+      });
+
+      this.setLoading(false);
+    } catch (err) {
+      this.setLoading(false);
+      console.log(err);
+    }
   }
 
   close(data?: any) {
     this.dialogRef.close(data);
+  }
+
+  setLoading(loading: boolean) {
+    this.appService.setLoading(loading);
   }
 }
