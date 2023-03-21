@@ -123,8 +123,8 @@ export class ApiService {
         nome: 'Costa, Batista e Macedo',
         cnpj: '000000000',
         endereco: {
-          tipo_logradouro: 'Rua',
-          logradouro: 'Costa Avenida',
+          tipo_logradouro: 'Avenida',
+          logradouro: 'Costa',
           numero: 4171,
           cidade: 'Costa do Norte',
           uf: 'ES',
@@ -173,8 +173,8 @@ export class ApiService {
         nome: 'Saraiva LTDA',
         cnpj: '000000000',
         endereco: {
-          tipo_logradouro: 'Rua',
-          logradouro: 'Xavier Rodovia',
+          tipo_logradouro: 'Rodovia',
+          logradouro: 'Xavier',
           numero: 8623,
           cidade: 'Xavier de Nossa Senhora',
           uf: 'MS',
@@ -223,8 +223,8 @@ export class ApiService {
         nome: 'Batista, Xavier e Macedo',
         cnpj: '000000000',
         endereco: {
-          tipo_logradouro: 'Rua',
-          logradouro: 'Pedro Henrique Alameda',
+          tipo_logradouro: 'Alameda',
+          logradouro: 'Pedro Henrique',
           numero: 2171,
           cidade: 'Gúbio do Norte',
           uf: 'BA',
@@ -273,8 +273,8 @@ export class ApiService {
         nome: 'Costa e Associados',
         cnpj: '000000000',
         endereco: {
-          tipo_logradouro: 'Rua',
-          logradouro: 'Kléber Marginal',
+          tipo_logradouro: 'Marginal',
+          logradouro: 'José da Silva',
           numero: 5742,
           cidade: 'Lorenzo de Nossa Senhora',
           uf: 'MG',
