@@ -12,6 +12,7 @@ import {
   TecnologiaSoftware,
 } from '../model/software.interface';
 import { ApiService } from '../services/api.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-c-software-versoes-form',
@@ -22,6 +23,7 @@ export class CSoftwareVersoesFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private appService: AppService,
     public dialogRef: MatDialogRef<CSoftwareVersoesFormComponent>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data_dialog: any
@@ -59,12 +61,15 @@ export class CSoftwareVersoesFormComponent implements OnInit {
   }
 
   async getAnalistas() {
+    this.setLoading(true);
     try {
       const { analistas }: any = await this.apiService.getAnalistas();
       this.analistas = analistas;
 
-      this.setSoftware();
+      this.setVersao();
+      this.setLoading(false);
     } catch (err) {
+      this.setLoading(false);
       console.log(err);
     }
   }
@@ -79,15 +84,39 @@ export class CSoftwareVersoesFormComponent implements OnInit {
     }
   }
 
-  setSoftware() {
+  setVersao() {
     this.form.get('id_analista').setValue(this.analistas[0].id);
   }
 
-  onSubmit() {
-    this.close({});
+  async onSubmit() {
+    this.setLoading(true);
+    const { versao, data, id_analista, id_status } = this.form.value;
+
+    try {
+      const body = {
+        versao,
+        data,
+        id_usuario_analista: id_analista,
+        id_status_versao: id_status,
+      };
+
+      const response = await this.apiService.postVersao(this.software.id, body);
+      this.close({
+        ...response,
+      });
+
+      this.setLoading(false);
+    } catch (err) {
+      this.setLoading(false);
+      console.log(err);
+    }
   }
 
   close(data?: any) {
     this.dialogRef.close(data);
+  }
+
+  setLoading(loading: boolean) {
+    this.appService.setLoading(loading);
   }
 }

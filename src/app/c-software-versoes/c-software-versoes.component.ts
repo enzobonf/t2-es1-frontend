@@ -4,8 +4,9 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { CSoftwareVersoesFormComponent } from '../c-software-versoes-form/c-software-versoes-form.component';
-import { Software } from '../model/software.interface';
+import { Software, VersaoSofware } from '../model/software.interface';
 
 @Component({
   selector: 'app-c-software-versoes',
@@ -22,6 +23,8 @@ export class CSoftwareVersoesComponent implements OnInit {
   software: Software = null;
   loading = false;
   displayedColumns: string[] = ['versao', 'data', 'analista', 'status'];
+
+  novaVersao = false;
 
   ngOnInit(): void {
     const {
@@ -43,9 +46,17 @@ export class CSoftwareVersoesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
-        //TODO
+        const versaoFormatted = this.formatVersao(result);
+        this.software.versoes = [...this.software.versoes, versaoFormatted];
+        this.novaVersao = true;
       }
     });
+  }
+
+  formatVersao(versaoSoftware: VersaoSofware) {
+    return {
+      ...versaoSoftware,
+      data_formatted: moment(versaoSoftware.data).format('DD/MM/YYYY'),
+    };
   }
 }

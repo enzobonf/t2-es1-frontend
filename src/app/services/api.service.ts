@@ -74,6 +74,14 @@ export class ApiService {
     );
   }
 
+  async postVersao(id_software: number, versao: any) {
+    return firstValueFrom(
+      this.http
+        .post<any>(this.api + `/softwares/${id_software}/versoes`, versao)
+        .pipe(take(1))
+    );
+  }
+
   async setStatusVersaoSoftware(
     id_software: number,
     id_versao: number,
@@ -92,60 +100,21 @@ export class ApiService {
   }
 
   async getTecnologias() {
-    return new Promise(resolve => {
-      const tecnologias: TecnologiaSoftware[] = [
-        {
-          id: 1,
-          nome: 'Adobe Lightroom',
-          objetivo: 'Software de edição e organização de fotos',
-        },
-        {
-          id: 2,
-          nome: 'Adobe Creative Cloud',
-          objetivo: 'Pacote de aplicativos de criação e design gráfico',
-        },
-        {
-          id: 3,
-          nome: 'Wacom Intuos',
-          objetivo: 'Tablet gráfico para desenho e pintura digital',
-        },
-        {
-          id: 4,
-          nome: 'Affinity Photo',
-          objetivo: 'Software alternativo de edição de imagens',
-        },
-        {
-          id: 5,
-          nome: 'Node.js',
-          objetivo: 'Desenvolvimento de back-end com JavaScript',
-        },
-        {
-          id: 6,
-          nome: 'Angular',
-          objetivo: 'Framework web poderoso e escalável',
-        },
-        {
-          id: 7,
-          nome: 'React',
-          objetivo:
-            'Biblioteca JavaScript para construção de interfaces de usuário interativas',
-        },
-        {
-          id: 8,
-          nome: 'Vue.js',
-          objetivo:
-            'Framework progressivo para construção de interfaces de usuário reativas e sofisticadas',
-        },
-      ];
-
-      resolve({ tecnologias });
-    });
+    return firstValueFrom(
+      this.http.get<any>(this.api + '/tecnologias').pipe(take(1))
+    );
   }
 
   async getAnalistas() {
-    return new Promise(resolve => {
-      resolve({ analistas });
-    });
+    return firstValueFrom(
+      this.http.get<any>(this.api + '/analistas').pipe(take(1))
+    );
+  }
+
+  async getUsuarioAtual() {
+    return firstValueFrom(
+      this.http.get<any>(this.api + '/usuario').pipe(take(1))
+    );
   }
 
   async getAllStatusDesenvolvimento() {

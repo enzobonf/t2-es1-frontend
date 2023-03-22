@@ -26,7 +26,14 @@ import { CContratoFormComponent } from './c-contrato-form/c-contrato-form.compon
 import { PChamadosComponent } from './p-chamados/p-chamados.component';
 import { ClChamadosComponent } from './cl-chamados/cl-chamados.component';
 import { CChamadoFormComponent } from './c-chamado-form/c-chamado-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
+import { PLoginComponent } from './p-login/p-login.component';
+import { PGetInfoComponent } from './p-get-info/p-get-info.component';
+import { InterceptionHttpService } from './services/interception-http.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
     PChamadosComponent,
     ClChamadosComponent,
     CChamadoFormComponent,
+    PLoginComponent,
+    PGetInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,8 +69,16 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptionHttpService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

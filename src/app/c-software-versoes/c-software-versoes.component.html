@@ -48,5 +48,5 @@
     <mat-icon>add</mat-icon>
     <span>Adicionar nova versão</span>
   </button>
-  <button mat-button mat-dialog-close>Fechar</button>
+  <button mat-button (click)="dialogRef.close(novaVersao);">Fechar</button>
 </mat-dialog-actions>

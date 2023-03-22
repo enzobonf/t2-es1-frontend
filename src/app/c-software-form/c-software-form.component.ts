@@ -72,6 +72,7 @@ export class CSoftwareFormComponent implements OnInit {
   }
 
   async getTecnologias() {
+    this.setLoading(true);
     try {
       const { tecnologias }: any = await this.apiService.getTecnologias();
       this.tecnologias = tecnologias.map(x => ({
@@ -82,7 +83,10 @@ export class CSoftwareFormComponent implements OnInit {
       if (this.software) {
         this.setSoftware();
       }
+
+      this.setLoading(false);
     } catch (err) {
+      this.setLoading(false);
       console.log(err);
     }
   }

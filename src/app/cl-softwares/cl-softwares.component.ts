@@ -55,7 +55,7 @@ export class ClSoftwaresComponent implements OnInit {
       const { softwares }: any = await this.apiService.getSoftwares();
       this.softwares = softwares;
 
-      this.formatDataSoftwares();
+      this.formatSoftwares();
       this.setLoading(false);
     } catch (err) {
       this.setLoading(false);
@@ -73,7 +73,7 @@ export class ClSoftwaresComponent implements OnInit {
     }
   }
 
-  formatDataSoftwares() {
+  formatSoftwares() {
     let strFormat = 'DD/MM/YYYY';
 
     this.softwares.forEach(software => {
@@ -121,6 +121,8 @@ export class ClSoftwaresComponent implements OnInit {
         } else {
           this.softwares = [...this.softwares, result];
         }
+
+        this.formatSoftwares();
       }
     });
   }
@@ -175,12 +177,16 @@ export class ClSoftwaresComponent implements OnInit {
   }
 
   clickVerVersoes(software: Software) {
-    this.dialog.open(CSoftwareVersoesComponent, {
+    const dialogRef = this.dialog.open(CSoftwareVersoesComponent, {
       disableClose: false,
       autoFocus: false,
       data: {
         software,
       },
+    });
+
+    dialogRef.afterClosed().subscribe(novaVersao => {
+      if (novaVersao) this.getSoftwares();
     });
   }
 

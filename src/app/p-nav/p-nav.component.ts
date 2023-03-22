@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-p-nav',
@@ -16,10 +17,10 @@ export class PNavComponent {
 
   nome_usuario = '';
 
-  constructor(private router: Router) {}
+  constructor(private appService: AppService, private router: Router) {}
 
   ngOnInit(): void {
-    this.nome_usuario = 'Fulano da Silva';
+    this.nome_usuario = this.appService.getNomeUsuario();
     this.setMenus();
   }
 
@@ -63,5 +64,7 @@ export class PNavComponent {
     return window.innerWidth < 600;
   }
 
-  logout() {}
+  logout() {
+    this.appService.logout();
+  }
 }
