@@ -14,7 +14,8 @@
             class="menu-item"
             [routerLink]="[menu.link]"
             routerLinkActive="menu-item-selected"
-            (click)="getVoltar() ? sidenav.toggle() : false">
+            (click)="getVoltar() ? sidenav.toggle() : false"
+            matRipple>
             <i class="material-icons icon">{{ menu.icon }}</i>
             <span style="color: #757575">{{ menu.nome }}</span>
           </button>
@@ -37,7 +38,7 @@
         <span [matMenuTriggerFor]="menu" class="user text" matRipple>
           <mat-icon class="icon" aria-hidden="false">person</mat-icon>
 
-          <!-- <span>{{ nome_usuario }}</span> -->
+          <span>{{ nome_usuario }}</span>
         </span>
 
         <mat-menu #menu="matMenu">
