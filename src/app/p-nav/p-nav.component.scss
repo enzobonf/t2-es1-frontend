@@ -168,7 +168,7 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
     cursor: pointer;
     background-color: #f3f5fb;
     padding: 8px;
-    border-radius: 50%;
+    border-radius: 15px;
     //font-weight: bold;
     color: #005b44;
     display: flex;
@@ -188,6 +188,7 @@ z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      margin-left: 5px;
     }
 
     @media (max-width: 600px){
