@@ -1,5 +1,5 @@
 export const environment = {
-  API_URL: 'https://t2-es1-backend.onrender.com/',
+  API_URL: 'https://t2-es1-backend.onrender.com',
   firebaseConfig: {
     apiKey: 'AIzaSyAiwyQuta2z4DV0lEss1nGimKC5xzxsDLY',
     authDomain: 'gestao-software.firebaseapp.com',
