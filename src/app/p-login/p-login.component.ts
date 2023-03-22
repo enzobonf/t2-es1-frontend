@@ -48,8 +48,11 @@ export class PLoginComponent {
 
       const usuario = await this.apiService.getUsuarioAtual();
       this.appService.setLoginInfo(usuario);
+      this.setLoading(false);
+
       this.router.navigate(['/']);
     } catch (e: any) {
+      this.setLoading(false);
       this.showSnackBar('Email ou senha incorretos', 'Ok', 'error');
     }
 
