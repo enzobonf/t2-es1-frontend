@@ -45,13 +45,13 @@ export class ClContratosComponent implements OnInit {
     try {
       const { contratos }: any = await this.apiService.getContratos();
       this.contratos = contratos;
-      this.formatDataSoftwares();
+      this.formatDataContratos();
     } catch (err) {
       console.log(err);
     }
   }
 
-  formatDataSoftwares() {
+  formatDataContratos() {
     let strFormat = 'DD/MM/YYYY';
 
     this.contratos.forEach(contrato => {
@@ -71,10 +71,21 @@ export class ClContratosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         if (contrato) {
-          // TODO
+          const contratoIndex = this.contratos.findIndex(
+            x => x.nro_contrato === result.nro_contrato
+          );
+          this.contratos[contratoIndex] = {
+            ...this.contratos[contratoIndex],
+            ...result,
+          };
+
+          this.contratos = [...this.contratos];
+        } else {
+          this.contratos = [...this.contratos, result];
         }
+
+        this.formatDataContratos();
       }
     });
   }
@@ -91,11 +102,23 @@ export class ClContratosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO
-      if (result)
-        this.contratos = this.contratos.filter(
-          x => x.nro_contrato !== contrato.nro_contrato
-        );
+      if (result) this.deleteContrato(contrato.nro_contrato);
     });
+  }
+
+  async deleteContrato(nro_contrato: number) {
+    this.setLoading(true);
+
+    try {
+      await this.apiService.deleteContrato(nro_contrato);
+      this.contratos = this.contratos.filter(
+        x => x.nro_contrato !== nro_contrato
+      );
+      this.setLoading(false);
+    } catch (err) {
+      this.setLoading(false);
+      console.log(err);
+    }
   }
 
   setLoading(loading: boolean) {

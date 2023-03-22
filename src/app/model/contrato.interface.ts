@@ -11,7 +11,7 @@ export interface Contrato {
   empresa: {
     id: number;
     nome: string;
-    usuario_chave: UsuarioChave;
+    usuario: UsuarioChave;
   };
   data_contratacao: string;
   data_formatted?: string;
@@ -21,5 +21,5 @@ export interface Contrato {
     sigla: string;
     versao: VersaoSofware;
   };
-  status: StatusContrato;
+  status_contrato: StatusContrato;
 }

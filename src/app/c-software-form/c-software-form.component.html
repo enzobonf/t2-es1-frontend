@@ -23,55 +23,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- <span class="sectionLabel col-12">
-        Versão atual
-      </span>
-
-      <div class="col-12 row" formGroupName="versao_atual">
-        <mat-form-field color="accent" class="col-12 col-sm-12 col-lg-6">
-          <mat-label>Nome da versão</mat-label>
-          <input matInput type="text" formControlName="versao" />
-
-          <mat-error *ngIf="form.get('versao_atual.versao')?.hasError('required')">
-            Nome da versão é obrigatório.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field
-          color="accent"
-          class="col-12 col-sm-6 col-lg-6"
-          (click)="picker.open()">
-          <input
-            matInput
-            formControlName="data"
-            [matDatepicker]="picker"
-            placeholder="Data"
-            [disabled]="true" />
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker [disabled]="!isNew"></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field color="accent" class="col-12 col-sm-12 col-lg-8">
-          <mat-select
-            placeholder="Analista responsável"
-            formControlName="id_analista">
-            <mat-option *ngFor="let item of analistas" [value]="item.id">
-              {{ item.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field color="accent" class="col-12 col-sm-12 col-lg-4">
-          <mat-select
-            placeholder="Status da versão"
-            formControlName="id_status">
-            <mat-option *ngFor="let item of all_status" [value]="item.id">
-              {{ item.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div> -->
-
       <span class="label">Tecnologias:</span>
       <div class="col-12 col-sm-6 col-lg-3" *ngFor="let item of tecnologias">
         <c-select-item
