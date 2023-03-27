@@ -12,33 +12,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { firstValueFrom, take } from 'rxjs';
 
-const analistas: Analista[] = [
-  {
-    id: 1,
-    nome: 'Lucas Oliveira',
-    email: 'lucas.oliveira@example.com',
-  },
-  {
-    id: 2,
-    nome: 'Fernanda Santos',
-    email: 'fernanda.santos@example.com',
-  },
-  {
-    id: 3,
-    nome: 'Mariana Silva',
-    email: 'mariana.silva@example.com',
-  },
-  {
-    id: 4,
-    nome: 'João Santos',
-    email: 'joao.santos@example.com',
-  },
-  {
-    id: 5,
-    nome: 'Pedro Oliveira',
-    email: 'pedro.oliveira@example.com',
-  },
-];
 @Injectable({
   providedIn: 'root',
 })
